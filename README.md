@@ -184,3 +184,9 @@ npm run test.e2e
 
 ## License
 MIT
+
+## Static Site Generator (Node.js)
+
+```
+npm run build.server
+```

@@ -2,6 +2,7 @@
   "home": {
     "dates": "Dates & relative time",
     "devs": {
+      "few": "",
       "one": "{{ value }} software developer",
       "other": "{{ value }} software developers"
     },

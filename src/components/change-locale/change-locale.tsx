@@ -12,7 +12,6 @@ export const ChangeLocale = component$(() => {
     const locale = useSpeakLocale();
     const config = useSpeakConfig();
 
-
     return (
         <div class="change-locale">
             <h2>{t('app.changeLocale')}</h2>

@@ -1,0 +1,11 @@
+{
+  "app": {
+    "changeLocale": "Schimbați limba",
+    "nav": {
+      "home": "Acasa",
+      "page": "Pagina"
+    },
+    "subtitle": "Traduce aplicatia ta Qwik in orice limba",
+    "title": "Qwik Vorbeste!"
+  }
+}

@@ -1,20 +1,18 @@
 import { useSpeakConfig, useSpeakLocale } from "qwik-speak";
-import { useLocation } from "@builder.io/qwik-city";
 
 export const useAnchorHref = () => {
     const locale = useSpeakLocale();
     const config = useSpeakConfig();
-    const location = useLocation();
 
-    return (url: string, { targetLang = locale.lang, baseHref = location.url.origin }) => {
-        const link = new URL(url, baseHref);
-        if (link.origin !== location.url.origin || targetLang === config.defaultLocale.lang) {
-            if (config.supportedLocales.find(l => l.lang === url.split('/')[1])) {
-                return url.replace(`/${url.split('/')[1]}`, ``);
-            }
-            return url;
+    return (url: string, { targetLang = locale.lang, }) => {
+        let link = url.replace(/^.*\/\/[^/]+/, '')
+        const fragment = url.split('/')[1]
+        if (config.supportedLocales.find(l => l.lang === fragment)) {
+            link = link.replace(`/${fragment}`, ``);
         }
-        link.pathname = `/${targetLang}${link.pathname}`;
-        return link.toString();
+        if (targetLang === config.defaultLocale.lang) {
+            return link;
+        }
+        return `/${targetLang}${link}`;
     }
 }
