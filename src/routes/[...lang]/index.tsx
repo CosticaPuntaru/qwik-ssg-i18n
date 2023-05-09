@@ -18,7 +18,9 @@ export const onStaticGenerate: StaticGenerateHandler = async () => {
             .filter((locale) => locale.lang !== speakConfig.defaultLocale.lang)
             .map(locale => ({
                 lang: locale.lang,
-            })),
+            })).concat([{
+                lang: '',
+            }]),
     }
     return r;
 };
