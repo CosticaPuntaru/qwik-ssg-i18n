@@ -20,10 +20,8 @@
     "start": "vite --open --mode ssr",
     "test": "vitest test --run",
     "test.e2e": "playwright test",
+    "test.e2e.install": "playwright install",
     "qwik": "qwik"
-  },
-  "bin": {
-    "qwik-speak-extract": "./packages/qwik-speak/extract/cli.js"
   },
   "devDependencies": {
     "@builder.io/qwik": "1.0.0",

@@ -1,6 +1,6 @@
 {
   "page": {
-    "default": "I'm a default value",
-    "text": ""
+    "default": "Sunt valuarea default",
+    "text": "Sunt cealata pagina"
   }
 }
