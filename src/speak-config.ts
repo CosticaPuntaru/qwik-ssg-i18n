@@ -3,7 +3,7 @@ import type { SpeakConfig } from 'qwik-speak';
 /**
  * Speak config
  */
-export const config: SpeakConfig = {
+export const speakConfig: SpeakConfig = {
   defaultLocale: { lang: 'en-US', currency: 'USD', timeZone: 'America/Los_Angeles', units: { 'length': 'mile' } },
   supportedLocales: [
     { lang: 'en-US', currency: 'USD', timeZone: 'America/Los_Angeles', units: { 'length': 'mile' } },

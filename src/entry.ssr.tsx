@@ -16,7 +16,7 @@ import { renderToStream } from '@builder.io/qwik/server';
 import { manifest } from '@qwik-client-manifest';
 import Root from './root';
 
-import { config } from './speak-config';
+import { speakConfig } from './speak-config';
 
 
 export function extractBase({ serverData }: RenderOptions): string {
@@ -35,7 +35,7 @@ export default function (opts: RenderToStreamOptions) {
     base: extractBase,
     // Use container attributes to set attributes on the html tag
     containerAttributes: {
-      lang: opts.serverData?.locale || config.defaultLocale.lang,
+      lang: opts.serverData?.locale || speakConfig.defaultLocale.lang,
       ...opts.containerAttributes,
     }
   });

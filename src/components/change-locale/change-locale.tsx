@@ -1,45 +1,30 @@
-import { $, component$, useStyles$ } from '@builder.io/qwik';
+import { component$, useStyles$ } from '@builder.io/qwik';
 import { useLocation } from '@builder.io/qwik-city';
-import type { SpeakLocale } from 'qwik-speak';
-import { $translate as t, displayName as dn, useSpeakLocale, useSpeakConfig } from 'qwik-speak';
+import { $translate as t, displayName as dn, useSpeakConfig, useSpeakLocale } from 'qwik-speak';
 
 import styles from './change-locale.css?inline';
+import { useAnchorHref } from "~/components/anchor.hooks";
 
 export const ChangeLocale = component$(() => {
-  useStyles$(styles);
+    useStyles$(styles);
+    const getPath$ = useAnchorHref();
+    const loc = useLocation();
+    const locale = useSpeakLocale();
+    const config = useSpeakConfig();
 
-  const loc = useLocation();
 
-  const locale = useSpeakLocale();
-  const config = useSpeakConfig();
-
-  // Replace the locale and navigate to the new URL
-  const navigateByLocale$ = $((newLocale: SpeakLocale) => {
-    const url = new URL(location.href);
-    if (loc.params.lang) {
-      if (newLocale.lang !== config.defaultLocale.lang) {
-        url.pathname = url.pathname.replace(loc.params.lang, newLocale.lang);
-      } else {
-        url.pathname = url.pathname.replace(new RegExp(`(/${loc.params.lang}/)|(/${loc.params.lang}$)`), '/');
-      }
-    } else if (newLocale.lang !== config.defaultLocale.lang) {
-      url.pathname = `/${newLocale.lang}${url.pathname}`;
-    }
-
-    location.href = url.toString();
-  });
-
-  return (
-    <div class="change-locale">
-      <h2>{t('app.changeLocale')}</h2>
-      <div class="names">
-        {config.supportedLocales.map(value => (
-          <button key={value.lang} class={{ active: value.lang == locale.lang }}
-            onClick$={async () => await navigateByLocale$(value)}>
-            {dn(value.lang, { type: 'language' })}
-          </button>
-        ))}
-      </div>
-    </div>
-  );
+    return (
+        <div class="change-locale">
+            <h2>{t('app.changeLocale')}</h2>
+            <div class="names">
+                {config.supportedLocales.map(value => (
+                    <a key={value.lang} href={getPath$(loc.url.pathname, { targetLang: value.lang })}>
+                        <button class={{ active: value.lang == locale.lang }}>
+                            {dn(value.lang, { type: 'language' })}
+                        </button>
+                    </a>
+                ))}
+            </div>
+        </div>
+    );
 });

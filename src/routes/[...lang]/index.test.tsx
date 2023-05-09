@@ -5,7 +5,7 @@ import type { LoadTranslationFn, TranslationFn } from 'qwik-speak';
 import { QwikSpeakProvider } from 'qwik-speak';
 
 import Home from './index';
-import { config } from '../../speak-config';
+import { speakConfig } from '../../speak-config';
 
 const loadTranslationStub$: LoadTranslationFn = $((lang: string, asset: string) =>
   JSON.parse(
@@ -23,7 +23,7 @@ test(`[Home Component]: Should render translated texts`, async () => {
   const { screen, render, userEvent } = await createDOM();
 
   await render(
-    <QwikSpeakProvider config={config} translationFn={translationFnStub} locale={config.defaultLocale}>
+    <QwikSpeakProvider config={speakConfig} translationFn={translationFnStub} locale={speakConfig.defaultLocale}>
       <Home />
     </QwikSpeakProvider>
   );
