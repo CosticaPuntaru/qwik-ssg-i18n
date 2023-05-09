@@ -16,8 +16,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./packages/qwik-speak
-
+        working-directory: ./
     strategy:
       matrix:
         node-version: [16.x]
