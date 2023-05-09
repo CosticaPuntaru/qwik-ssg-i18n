@@ -1,8 +1,11 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import { $translate as t, Speak } from 'qwik-speak';
+import { StaticGenerateHandler } from "@builder.io/qwik-city";
 
-
+export const onStaticGenerate: StaticGenerateHandler = async () => {
+    return {}
+}
 export const Page = component$(() => {
     const key = 'dynamic';
 
